@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        แก้ไขข้อมูลส่วนตัว
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section>
+			<h1>แก้ไขข้อมูลส่วนตัว</h1>
+		</section>
+
+		<section class="content">
+			<h:form id="frm_edit_cus">
+			<p:growl id="growl" for="res_edit" showDetail="true" sticky="true" /> 
+				<p:outputPanel id="panel_edit_detail">
+					<div class="form-group">
+						<div class="box box-info">
+	
+							<div class="box box-info">
+								<div class="panel panel-heading">
+									<h3 class="panel-title">:: Edit Profile ::</h3>
+								</div>
+								<div class="panel-body">
+									<div class=" form-group col-md-12">
+										<label class="col-md-4 control-label">ชื่อผู้ใช้ระบบ : </label>
+										<div class="col-md-8">
+											<p:inputText  id="username" disabled="true"
+												value="#{sessionMBean.userProfile.username}"
+												class="form-control" />
+										</div>
+									</div>
+									<div class=" form-group col-md-12">
+										<label class="col-md-4 control-label">ชื่อ : <span
+											style="color: red;">*</span></label>
+										<div class="col-md-8">
+											<p:inputText  id="name"
+												value="#{sessionMBean.userProfile.fName}"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-md-4 control-label">นามสกุล : <span
+											style="color: red;">*</span></label>
+										<div class="col-md-8">
+											<p:inputText id="lastname"
+												value="#{sessionMBean.userProfile.lName}"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-md-4 control-label">รูปประจำตัว : <span
+											style="color: red;">*</span></label>
+										<div class="col-md-8">
+											<p:fileUpload value="" mode="simple" skinSimple="" />
+											<!--<input type="text" id="pic" value="#{register.detail_user.pic}" placeholder="" class="form-control"/>-->
+										</div>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-md-4 control-label">Email : </label>
+										<div class="col-md-8">
+											<p:inputText id="email"
+												value="#{sessionMBean.userProfile.email}"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-md-4 control-label">ที่อยู่ : <span
+											style="color: red;">*</span></label>
+										<div class="col-md-8">
+											<p:inputTextarea value="#{sessionMBean.userProfile.address}" id="address"
+												class="form-control" placeholder="กรุณากรอกที่อยู่"></p:inputTextarea>
+										</div>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="col-md-4 control-label">เบอร์โทรศัพท์ : </label>
+										<div class="col-md-8">
+											<p:inputMask id="phone" value="#{sessionMBean.userProfile.phone}"
+												mask="999-9999999" placeholder="กรุณากรอกเบอร์โทรศัพท์"
+												class="form-control" />
+											<!--                                        <input type="text" id="phone"  value="#{user.phone}" placeholder="กรุณากรอกเบอร์โทรศัพท์"  class="form-control"/>-->
+										</div>
+									</div>
+	
+	
+									<div align="center" class="form-group">
+										<p:commandButton value="บันทึกข้อมูล" action="#{sessionMBean.submit}" class="btn btn-info"  update=":frm_edit_cus:panel_edit_detail" />
+										<p:commandButton icon="ui-icon-close" value="ปืด" class="btn btn-warning" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

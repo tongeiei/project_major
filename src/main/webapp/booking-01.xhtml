@@ -1,0 +1,153 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | จองสนามเล็ก
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<br />
+			<ui:debug />
+			<h:form id="form">
+				<p:outputPanel id="panel_edit">
+					<div class="box box-solid box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">
+								<i class="fa fa-pencil-square-o" /> Major | จองสนามเล็ก
+							</h3>
+							<div class="box-tools pull-right">
+								<i class="fa fa-minus"></i>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12">
+									<p:dataTable id="dataTable" var="s" value="#{booking.time()}"
+										editable="true" reflow="true">
+										<!-- 										<p:ajax event="rowEdit" listener="#{showField.onRowEdit}" -->
+										<!-- 											update=":form:msgs" /> -->
+										<!-- 										<p:ajax event="rowEditCancel" -->
+										<!-- 											listener="#{showField.onRowEdit()}" update=":form:msgs" /> -->
+										<p:ajax event="rowSelect" />
+										<p:ajax event="rowUnselect" />
+										<f:facet name="header">
+											<p:outputLabel style="font-size: 20px;" value="จองสนามเล็ก" />
+											<div align="center">
+
+												<!-- 						<p:outputLabel for="button" value="เลือกวันที่   :  " /> -->
+												<p:calendar id="button" placeholder="เลือกวันที่"
+													showOn="button" />
+											</div>
+											
+										</f:facet>
+
+										<p:column headerText="เวลาจอง">
+											<f:facet name="output">
+												<h:outputText value="#{s.time}" />
+											</f:facet>
+											<h:outputText value="#{s.time}" id="time" />
+										</p:column>
+
+										<p:column headerText="ราคาสนาม (ชั่วโมงล่ะ)">
+											<p:cellEditor>
+												<f:facet name="output">
+													<h:outputText value="#{s.price}" />
+												</f:facet>
+												<f:facet name="input">
+													<p:inputText value="#{s.price}" />
+												</f:facet>
+											</p:cellEditor>
+										</p:column>
+
+										<p:column headerText="เมนู">
+                                      <!--if -->
+<!--                                       ตรงนี้อะเขียน เงื่อนไขเชตดูว่าคนๆนี้อ่ะจองยัง  -->
+											<p:commandButton onclick="PF('dlg').show();" value="จอง" action="#{booking.selectid(s.idTime)}"/>
+											
+<!-- 											end -->
+										</p:column>
+
+									</p:dataTable>
+									<p:dialog class="panel-title" header=":: ยืนยันการจอง ::"
+										widgetVar="dlg" focus="field_name" resizable="false">
+
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel for="field_name" value="เวลา : ">
+												<span style="color: red;">*</span>
+											</h:outputLabel>
+											<p:inputText class="form-control" id="field_name"
+												value="#{booking.item.time}" />
+
+											<h:outputLabel for="field_name" value="ชื่อสนาม : ">
+												<span style="color: red;">*</span>
+											</h:outputLabel>
+											<p:inputText class="form-control" id="field_name" value="สนามเล็ก" />
+
+
+											<h:outputLabel>ราคา/ชั่วโมงล่ะ : <span
+													style="color: red;">*</span>
+											</h:outputLabel>
+											<p:inputNumber id="field_pric" value="#{booking.item.price}"/>
+
+											<f:facet name="footer">
+
+												<div align="center">
+													<p:commandButton value="บันทึกข้อมูล"
+														actionListener="#{register.onBtnSubmit()}"
+														styleClass="ui-confirmdialog-yes" ajax="false"
+														class="btn   btn-sm" icon="ui-icon-check"
+														update="matchGrid" />
+
+												</div>
+
+
+											</f:facet>
+											
+										</h:panelGrid>
+									</p:dialog>
+									<p:growl id="msgs" showDetail="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

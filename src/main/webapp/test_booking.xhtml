@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | จัดการข้อมูลสนาม
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<br />
+			<ui:debug />
+			<h:form id="form">
+				<p:outputPanel id="panel_edit">
+					<div class="box box-solid box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">
+								<i class="fa fa-pencil-square-o" /> Major | จัดการข้อมูลสนาม
+							</h3>
+							<div class="box-tools pull-right">
+								<!-- 								<p:commandButton class="btn  btn-danger btn-sm" -->
+								<!-- 									onclick="PF('dlg').show();" value="เพิ่มข้อมูล" /> -->
+								<i class="fa fa-minus"></i>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12">
+
+									<p:dataTable id="checkboxDT" var="t" value="#{booking.time()}"
+										selection="#{booking.item}" rowKey="#{t.idTime}">
+										<p:ajax event="rowSelectCheckbox"
+											listener="#{booking.onRowSelect()}"
+											oncomplete="articleBean.onSelection" />
+										<p:ajax event="rowUnselectCheckbox"
+											listener="#{articleBean.onRowUnselect}"
+											oncomplete="articleBean.onSelection" />
+										<f:facet name="header">
+											<div>booking</div>
+											<p:calendar id="button" placeholder="เลือกวันที่"
+												showOn="button" value="#{booking.bookingBean.date_booking}" />
+										</f:facet>
+
+										<p:column headerText="TIME">
+											<h:outputText value="#{t.time}" />
+										</p:column>
+										<p:column selectionMode="multiple">
+											<h:outputText value="#{booking.bookingBean.detail_booking}" />
+										</p:column>
+
+
+										<f:facet name="footer">
+											<p:commandButton process="checkboxDT"
+												update=":form:multiCarDetail" value="จอง"
+												action="#{booking.onRowSelect()}" />
+										</f:facet>
+									</p:dataTable>
+
+									<p:dialog>
+
+									</p:dialog>
+
+									<p:dialog header="Selected Cars" widgetVar="multiCarDialog"
+										modal="true" showEffect="fade" hideEffect="fade"
+										resizable="false" width="220">
+										<p:outputPanel id="multiCarDetail" style="text-align:center;">
+											<ui:repeat value="#{booking.item}" var="t">
+												<h:outputText value="#{t.idTime} - #{t.time}"
+													style="display:block" />
+											</ui:repeat>
+										</p:outputPanel>
+									</p:dialog>
+									<p:growl id="msgs" showDetail="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

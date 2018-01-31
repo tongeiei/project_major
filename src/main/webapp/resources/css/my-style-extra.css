@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+ .ui-widget .ui-widget {
+ 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial,
+		sans-serif;
+    font-size: .85em;
+}
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th {
+    padding: 4px 5px;
+    overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.image-ring .ui-ring-item {
+	border: 0 none;
+}
+
+.image-ring .ui-ring-item img {
+	width: 100%;
+}
+
+.images_show {
+	background-color:yellow;
+	padding-left: 40px;
+}
+
+.ui-ring button {
+	font-size: 1em !important; 
+}
+.ui-state-default {
+	border: 0px solid #cccccc;
+	background-image: none;
+	background-color: rgba(0,0,0,0);
+	box-shadow: none;
+}

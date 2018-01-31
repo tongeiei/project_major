@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.ui-widget {
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial,
+		sans-serif;
+	font-weight: 400;
+}
+
+.ui-selectonemenu-panel.hideDisabled .ui-selectonemenu-item.ui-state-disabled
+	{
+	display: none;
+}
+
+.ui-inputswitch .ui-inputswitch-on, .ui-inputswitch .ui-inputswitch-off { 
+	height: 30px;
+	padding-top: 0px;
+}
+
+.form-control-p {
+	width: 100%;
+}
+
+label {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 0px;
+	font-weight: normal;
+}
+
+.ui-autocomplete-input {
+	width: 100%;
+}
+
+.my-ui-label {
+	display: block;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.width-full {
+	width: 100%;
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.my-text-warning {
+	color: #F39C12;
+}
+
+a.my-text-warning:hover {
+	color: red;
+}
+
+.popup-panel-refresh {
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ccc;
+	background-color: #f3f3f3;
+	opacity: .5;
+}
+
+.icon-refresh {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	opacity: 1;
+	color: black;
+	font-size: 5em;
+	margin-top: -0.5em;
+	margin-left: -0.25em;
+}
+
+.error-message {
+	color: green;
+	font-size: .7em;
+}
+
+.color-default {
+	color: #333;
+}
+
+.color-disable {
+	color: #cccccc;
+}
+
+.bg-disable {
+	background-color: #cccccc;
+}
+
+
+.switch .ui-state-active {
+	background-color: #009933;	
+}
+.note-sidebar {
+	padding-left: 5px;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger {
+   width: 18px;
+   padding: 0 0px;
+   padding-top: 4px;
+   padding-right: 1em;
+}
+

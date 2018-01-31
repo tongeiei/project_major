@@ -1,0 +1,158 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | จองสนาม
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<section>
+				<h1>Major | จองสนามฟุตบอลขนาดเล็ก</h1>
+			</section>
+
+
+			<br />
+			<section class="content">
+				<h:form id="booking01">
+					<!-- 					<p:messages> -->
+					<!-- 						<p:autoUpdate /> -->
+					<!-- 					</p:messages> -->
+					<p:outputPanel id="form">
+						<div class="box box-solid box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<i class="fa fa-money" /> จอง
+								</h3>
+								<div class="box-tools pull-right">
+									<i class="fa fa-minus"></i>
+								</div>
+							</div>
+							<p:growl id="msgs" showDetail="true" />
+							<p:dataTable id="basicDT" var="t" value="" reflow="true"
+									selection="#{showTime.time()}" >
+								<f:facet name="header">
+
+									<div>
+										<p:outputLabel for="console" value="เลือกสนาม :" />
+										<p:selectOneRadio id="console" value="">
+											<f:selectItem itemLabel="สนามเล็ก" itemValue="Xbox One" />
+											<f:selectItem itemLabel="สนามใหญ่" itemValue="PS4" />
+										</p:selectOneRadio>
+										<h:outputText value="เลือกวันที่จอง : " />
+										<p:calendar id="restricted" value="#{calendarView.date6}"
+											locale="th" navigator="true" pattern="dd-MMM-yyyy" />
+									</div>
+									<div>
+
+										<h:outputText value="เลือกช่วงเวลา : " />
+										<p:selectOneMenu  value="#{showTime.time}" style="width:150px">
+											<f:selectItem itemLabel="------" itemValue="#{showTime.item}" />
+										
+										</p:selectOneMenu>
+
+									</div>
+
+									<div>
+										<p:commandButton value="ตรวจสอบ" icon="ui-icon-check" />
+									</div>
+								</f:facet>
+								<p:column selectionMode="multiple"
+										style="width:16px;text-align:center" />
+								<p:column headerText="เวลาจอง">
+
+								</p:column>
+
+								<p:column headerText="สนาม">
+									<h:outputText value="" />
+								</p:column>
+								<p:column headerText="สถานะการจอง">
+									<h:outputText value="" />
+								</p:column>
+								<p:column headerText="การจอง" style="text-align: center">
+									<!-- 									<p:commandButton update="booking01" -->
+									<!-- 										oncomplete="PF('carDialog').show()" -->
+									<!-- 										icon="fa far fa-calendar-plus" title="View"> -->
+									<!-- 										<f:setPropertyActionListener value="#{car}" -->
+									<!-- 											target="#{dtSelectionView.selectedCar}" /> -->
+									<!-- 									</p:commandButton> -->
+								</p:column>
+								<f:facet name="footer">
+										<p:commandButton process="checkboxDT"
+											update=":form:multiCarDetail" icon="ui-icon-search"
+											value="View" oncomplete="PF('multiCarDialog').show()" />
+									</f:facet>
+
+								<p:dialog modal="true" resizable="false" header="Values"
+									widgetVar="dlg" showEffect="fold">
+									<p:panelGrid id="display" columns="2"
+										columnClasses="label,value">
+										<!-- 										radioView -->
+										<h:outputText value="Console:" />
+										<h:outputText value="#{radioView.console}" />
+
+										<!-- selectOneMenuView -->
+										<h:outputText value="Basic:" />
+										<h:outputText value="#{showTime.time()}" />
+
+										<!-- 										ปฏิทิน -->
+										<h:outputText value="Restricted:" />
+										<h:outputText value="#{calendarView.date6}">
+											<f:convertDateTime pattern="MM/dd/yyyy" />
+										</h:outputText>
+									</p:panelGrid>
+									<p:dialog header="Selected Cars" widgetVar="multiCarDialog"
+								modal="true" showEffect="fade" hideEffect="fade"
+								resizable="false" width="220">
+								<p:outputPanel id="multiCarDetail" style="text-align:center;">
+									<ui:repeat value="#{showField.onRowSelect()}" var="car">
+										<h:outputText value="#{showField.ls_user()} - #{showField.ls_user()}"
+											style="display:block" />
+									</ui:repeat>
+								</p:outputPanel>
+							</p:dialog>
+								</p:dialog>
+							</p:dataTable>
+						</div>
+					</p:outputPanel>
+				</h:form>
+			</section>
+		</section>
+
+	</ui:define>
+</ui:composition>

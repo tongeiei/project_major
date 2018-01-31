@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | จัดการแต้มสะสม
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+<!-- 			<section> -->
+<!-- 				<h1></h1> -->
+<!-- 			</section> -->
+
+
+			<br />
+			<ui:debug />
+			<h:form id="form">
+				<p:outputPanel id="panel_edit">
+					<div class="box box-solid box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">
+								<i class="fa fa-pencil-square-o" /> Major | จัดการแต้มสะสม
+							</h3>
+							<div class="box-tools pull-right">
+								<i class="fa fa-minus"></i>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12">
+									<p:dataTable id="dataTable" var="s"
+										value="#{showField.listUser}" editable="true" reflow="true">
+										<p:ajax event="rowEdit" listener="#{showField.onRowEdit}"
+											update=":form:msgs" />
+										<p:ajax event="rowEditCancel"
+											listener="#{showField.onRowCancel}" update=":form:msgs" />
+									
+										<f:facet name="header">
+											<p:outputLabel value="ตารางข้อมูลแต้มสะสม" />
+										</f:facet>
+										<p:column headerText="ชื่อผู้ใช้">
+																			<f:facet name="output">
+												<h:outputText value="#{s.user_name}" />
+											</f:facet>
+											<h:outputText value="#{s.user_name}" id="user_name" />
+										</p:column>
+
+										<p:column headerText="ชื่อ">
+											<p:cellEditor>
+												<f:facet name="output">
+													<h:outputText value="#{s.name}" />
+												</f:facet>
+												<f:facet name="input">
+													<p:inputText value="#{s.name}" />
+												</f:facet>
+											</p:cellEditor>
+										</p:column>
+
+										<p:column headerText="แต้มสะสม">
+											<p:cellEditor>
+												<f:facet name="output">
+													<h:outputText value="#{s.point}" />
+												</f:facet>
+												<f:facet name="input">
+													<p:inputText value="#{s.point}" />
+												</f:facet>
+											</p:cellEditor>
+										</p:column>
+
+										
+										<p:column headerText="Edit">
+											<p:rowEditor />
+										</p:column>
+									</p:dataTable>
+									<p:growl id="msgs" showDetail="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

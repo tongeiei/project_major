@@ -1,0 +1,204 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        จองสนามฟุตบอล
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section>
+			<h1>จองสนามฟุตบอล</h1>
+		</section>
+
+		<section>
+			<h:form id="schedule">
+				<script type="text/javascript">
+                    PrimeFaces.locales['th'] = {
+                        header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month'
+                    },
+                    monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคน', 'มิถุนาคม', 'กรกฏาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤษจิกายน', 'ธันวาคม'],
+                    monthNamesShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พฤ.ย.', 'ธ.ค.'],
+                    dayNames: ['อาทิตย์', 'จันทร์ ', 'อังคาร', 'พุทธ', 'พฤหัส', 'ศุกร์', 'เสาร์'],
+                    dayNamesShort: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'],
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: true,
+                    eventLimit: true // allow "more" link when too many events
+                    };
+                </script>
+				<style type="text/css">
+.value {
+	width: 10000px;
+}
+</style>
+				<h:panelGrid columnClasses="value">
+					<p:schedule id="schedule" value="#{scheduleView.eventModel}"
+						widgetVar="myschedule" timeZone="GMT+7">
+
+						<p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}"
+							update="eventDetails" oncomplete="PF('eventDialog').show();" />
+						<p:ajax event="eventSelect"
+							listener="#{scheduleView.onEventSelect}" update="eventDetails"
+							oncomplete="PF('eventDialog').show();" />
+						<p:ajax event="eventMove" listener="#{scheduleView.onEventMove}"
+							update="" />
+						<p:ajax event="eventResize"
+							listener="#{scheduleView.onEventResize}" update="" />
+
+					</p:schedule>
+				</h:panelGrid>
+				<p:dialog widgetVar="eventDialog" header="จองสนามฟุตบอล"
+					showEffect="clip" hideEffect="clip">
+					<h:panelGrid id="eventDetails">
+						<!--                         <p:outputLabel for="title" value="เลือกสนาม :" /> -->
+						<!--                         <h:outputLabel for="txt3" value="เลือกสนาม :" /> -->
+						<h:selectOneMenu id="txt3" value="" required="true" label="Text 3">
+							<f:selectItem itemLabel="กรุณาเลือกสนาม " itemValue=""
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="สนามเล็ก" itemValue="1" />
+							<f:selectItem itemLabel="สนามใหญ่่" itemValue="2" />
+						</h:selectOneMenu>
+						<!--                         <p:inputText id="title" value="#{scheduleView.event.title}" required="true" /> -->
+
+						<p:outputLabel for="from" value="From:" />
+						<p:calendar id="from" value="#{scheduleView.event.startDate}"
+							timeZone="GMT+7" pattern="HH:mm" />
+						<h3>เวลาจอง</h3>
+								<p:outputPanel id="customPanel" style="margin-bottom:10px">
+									<p:checkbox id="customRadio" value="#{booking.bookingBean.time}" layout="custom">
+										<f:selectItem itemLabel="08.00" itemValue="08.00" />
+										<f:selectItem itemLabel="09.00" itemValue="09.00" />
+										<f:selectItem itemLabel="10.00" itemValue="10.00" />
+										<f:selectItem itemLabel="11.00" itemValue="11.00" />
+										<f:selectItem itemLabel="12.00" itemValue="12.00" />
+										<f:selectItem itemLabel="13.00" itemValue="13.00" />
+										<f:selectItem itemLabel="14.00" itemValue="14.00" />
+										<f:selectItem itemLabel="15.00" itemValue="15.00" />
+										<f:selectItem itemLabel="16.00" itemValue="16.00" />
+										<f:selectItem itemLabel="17.00" itemValue="17.00" />
+										<f:selectItem itemLabel="18.00" itemValue="18.00" />
+										<f:selectItem itemLabel="19.00" itemValue="19.00" />
+										<f:selectItem itemLabel="20.00" itemValue="20.00" />
+										<f:selectItem itemLabel="21.00" itemValue="21.00" />
+										<f:selectItem itemLabel="22.00" itemValue="22.00" />
+										<f:selectItem itemLabel="23.00" itemValue="23.00" />
+									</p:checkbox>
+
+									<h:panelGrid columns="3" cellpadding="5">
+										<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+										<h:outputLabel for="opt1" value=" 08.00" />
+										<br />
+
+										<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+										<h:outputLabel for="opt2" value=" 09.00" />
+										<br />
+
+										<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
+										<h:outputLabel for="opt3" value=" 10.00" />
+										<br />
+										
+										<p:radioButton id="opt4" for="customRadio" itemIndex="3" />
+										<h:outputLabel for="opt4" value=" 11.00" />
+										<br />
+										
+										<p:radioButton id="opt5" for="customRadio" itemIndex="4" />
+										<h:outputLabel for="opt5" value=" 12.00" />
+										<br />
+										
+										<p:radioButton id="opt6" for="customRadio" itemIndex="5" />
+										<h:outputLabel for="opt6" value=" 13.00" />
+										<br />
+										
+										<p:radioButton id="opt7" for="customRadio" itemIndex="6" />
+										<h:outputLabel for="opt7" value=" 14.00" />
+										<br />
+										
+										<p:radioButton id="opt8" for="customRadio" itemIndex="7" />
+										<h:outputLabel for="opt8" value=" 15.00" />
+										<br />
+										
+										<p:radioButton id="opt9" for="customRadio" itemIndex="8" />
+										<h:outputLabel for="opt9" value=" 16.00" />
+										<br />
+										
+										<p:radioButton id="opt10" for="customRadio" itemIndex="9" />
+										<h:outputLabel for="opt10" value=" 17.00" />
+										<br />
+										
+										<p:radioButton id="opt11" for="customRadio" itemIndex="10" />
+										<h:outputLabel for="opt11" value=" 18.00" />
+										<br />
+										
+										<p:radioButton id="opt12" for="customRadio" itemIndex="11" />
+										<h:outputLabel for="opt12" value=" 19.00" />
+										<br />
+										
+										<p:radioButton id="opt13" for="customRadio" itemIndex="12" />
+										<h:outputLabel for="opt13" value=" 20.00" />
+										<br />
+										
+										<p:radioButton id="opt14" for="customRadio" itemIndex="13" />
+										<h:outputLabel for="opt14" value=" 21.00" />
+										<br />
+										
+										<p:radioButton id="opt15" for="customRadio" itemIndex="14" />
+										<h:outputLabel  for="opt15" value=" 22.00" />
+										<br />
+										
+										<p:radioButton id="opt16" for="customRadio" itemIndex="15" />
+										<h:outputLabel for="opt16" value=" 23.00" />
+									</h:panelGrid>
+								</p:outputPanel>
+
+						
+						<p:outputLabel for="allDay" value="All Day:" />
+						<h:selectBooleanCheckbox id="allDay"
+							value="#{scheduleView.event.allDay}" />
+
+						<p:commandButton type="reset" value="Reset" />
+						<p:commandButton id="addButton" value="Save"
+							actionListener="#{booking.submit()}"
+						/>
+					</h:panelGrid>
+				</p:dialog>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major Arena
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<section>
+				<h1>Major Arena</h1>
+			</section>
+			<br />
+			<section class="content">
+				<h:form id="frm_home">
+					<!-- 					<p:dataScroller value="#{dataScrollerView.showField}" var="car" -->
+					<!-- 						chunkSize="10"> -->
+					<!-- 						<f:facet name="header"> -->
+					<!--             Scroll Down to Load More Cars -->
+					<!--         </f:facet> -->
+
+
+					<!-- 						<h:panelGrid columns="2" style="width:100%" -->
+					<!-- 							columnClasses="logo,detail"> -->
+					<!-- 							<p:graphicImage name="" /> -->
+
+					<p:outputPanel>
+						<img src="resources/images/avatar2.png" />
+						<h:panelGrid columns="2" cellpadding="10"
+							value="#{showField.list()}" var="s">
+
+							<h:outputText value="ชื่อสนาม : " />
+							<h:outputText value="สนามเล็ก" style="font-weight: bold" />
+
+							<h:outputText value="รายละเอียดของสนาม : " />
+							<h:outputText
+								value="สนามเล็ก ขนาดสนาม 43 เมตร x 33 เมตร ชั่วโมงล่ะ 600 บาท จำนวนผู้ที่เล่นได้ทีมล่ะ 5 - 6 คน มีลูกฟุตบอล"
+								style="font-weight: bold" />
+
+							<h:outputText value="ชั่วโมงล่ะ : " />
+							<h:outputText value="600฿" style="font-weight: bold" />
+						</h:panelGrid>
+						<p:commandButton action="booking-field01.jsf" value="จอง" />
+					</p:outputPanel>
+
+					<p:outputPanel>
+						<img src="resources/images/avatar2.png" />
+						<h:panelGrid columns="2" cellpadding="5"
+							value="#{showField.list()}" var="s">
+							<h:outputText value="ชื่อสนาม : " />
+							<h:outputText value="สนามใหญ่" style="font-weight: bold" />
+
+							<h:outputText value="รายละเอียดของสนาม : " />
+							<h:outputText
+								value="สนามใหญ่ ขนาดสนาม 53 เมตร x 33 เมตร ชั่วโมงล่ะ 1000 บาท จำนวนผู้ที่เล่นได้ทีมล่ะ 7 - 8 คน มีลูกฟุตบอล"
+								style="font-weight: bold" />
+
+							<h:outputText value="ชั่วโมงล่ะ : " />
+							<h:outputText value="1000฿" style="font-weight: bold" />
+							<p:commandButton action="booking-field02.jsf" value="จอง" />
+						</h:panelGrid>
+
+					</p:outputPanel>
+					<p:selectOneMenu value="#{showTime.item}" 
+						style="width:308px;font-size:15px">
+						<f:selectItem itemLabel="เลือกเวลา" itemValue="" />
+						<f:selectItems value="#{showTime.time()}" />
+					</p:selectOneMenu>
+					<!-- 						</h:panelGrid> -->
+					<!-- 					</p:dataScroller> -->
+				</h:form>
+			</section>
+		</section>
+	</ui:define>
+</ui:composition>

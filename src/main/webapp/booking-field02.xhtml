@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | จองสนาม
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<section>
+				<h1>Major | จองสนามฟุตบอลขนาดใหญ่</h1>
+			</section>
+
+
+			<br />
+			<p:outputPanel>
+
+				<p:outputPanel>
+								<h:panelGrid columns="2" cellpadding="5" value="#{showField.list()}" var="s" >
+									<h:outputText value="ชื่อสนาม : " />
+									<h:outputText value="สนามใหญ่" style="font-weight: bold" />
+
+									<h:outputText value="รายละเอียดของสนาม : " />
+									<h:outputText value="สนามใหญ่ ขนาดสนาม 53 เมตร x 33 เมตร ชั่วโมงล่ะ 1000 บาท จำนวนผู้ที่เล่นได้ทีมล่ะ 7 - 8 คน มีลูกฟุตบอล" style="font-weight: bold" />
+
+									<h:outputText value="ชั่วโมงล่ะ : " />
+									<h:outputText value="1000฿" style="font-weight: bold" />
+								</h:panelGrid>
+								
+							</p:outputPanel>
+
+			</p:outputPanel>
+			<p:growl id="msgs" showDetail="true" />
+
+					<p:dataTable id="basicDT" var="car"
+						value="">
+						
+						<p:column headerText="เวลาจอง">
+							<h:outputText value="" />
+						</p:column>
+						<p:column headerText="วันที่จอง">
+							<h:outputText value="" />
+						</p:column>
+						<p:column headerText="สนาม">
+							<h:outputText value="" />
+						</p:column>
+						<p:column headerText="สถานะการจอง">
+							<h:outputText value="" />
+						</p:column>
+						<p:column headerText="การจอง" style="text-align: center">
+							<p:commandButton update="booking02"
+								oncomplete="PF('carDialog').show()" icon="fa far fa-calendar-plus"
+								title="View">
+								<f:setPropertyActionListener value="#{car}"
+									target="#{dtSelectionView.selectedCar}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+
+
+		</section>
+	</ui:define>
+</ui:composition>

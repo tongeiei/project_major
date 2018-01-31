@@ -1,0 +1,165 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+       จองสนาม
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<section>
+				<h1>จองสนามเล็ก</h1>
+			</section>
+
+			<section class="content">
+				<h:form id="frm_edit_cus">
+					<p:messages showDetail="true" autoUpdate="true"/>
+					<p:growl id="growl" for="res_edit" showDetail="true" sticky="true" />
+					<p:outputPanel id="panel_edit_detail">
+						<div class="form-group">
+							<div class="box box-info">
+
+								<div class="box box-info">
+									<div class="panel panel-heading">
+										<h3 class="panel-title">:: จองสนามเล็ก ::</h3>
+									</div>
+									<div class="panel-body">
+										<p:messages id="msg_confirm" for="confirm" showDetail="true"
+											autoUpdate="true" closable="true" />
+
+										<div class=" form-group col-md-12">
+											<label class="col-md-4 control-label">ชื่อผู้ใช้ระบบ
+												: </label>
+											<div class="col-md-8">
+												<p:inputText id="username" disabled="true"
+													value="#{sessionMBean.userProfile.username}"
+													class="form-control" />
+											</div>
+										</div>
+
+
+										<div class="form-group col-md-12">
+											<label class="col-md-4 control-label">Email : </label>
+											<div class="col-md-8">
+												<p:inputText id="email"
+													value="#{sessionMBean.userProfile.email}"
+													class="form-control" />
+											</div>
+										</div>
+
+										<div class="form-group col-md-12">
+											<label class="col-md-4 control-label">เบอร์โทรศัพท์ :
+											</label>
+											<div class="col-md-8">
+												<p:inputMask id="phone"
+													value="#{sessionMBean.userProfile.phone}"
+													mask="999-9999999" placeholder="กรุณากรอกเบอร์โทรศัพท์"
+													class="form-control" />
+												<!--                                        <input type="text" id="phone"  value="#{user.phone}" placeholder="กรุณากรอกเบอร์โทรศัพท์"  class="form-control"/>-->
+											</div>
+										</div>
+
+										<div class="form-group col-md-12" align="center">
+											<h:outputText value="Enter Booking Date : " />
+											<p:calendar locale="th"
+												value="#{sessionMBean.bookingBean.date_booking}"
+												pattern="yyyy-MM-dd">
+												<f:convertDateTime pattern="yyyy-MM-dd" timeZone="UTC" />
+											</p:calendar>
+
+
+
+										</div>
+										<div class="form-group col-md-12" align="center">
+
+											<p:selectOneMenu
+												value="#{sessionMBean.bookingBean.detail_booking}"
+												style="width:50%;font-size:15px">
+												<f:selectItem itemLabel="เลือกเวลา" itemValue="" />
+												<f:selectItem itemLabel="08.00 - 09.00"
+													itemValue="08.00 - 09.00" />
+												<f:selectItem itemLabel="09.00 - 10.00"
+													itemValue="09.00 - 10.00" />
+												<f:selectItem itemLabel="10.00 - 11.00"
+													itemValue="10.00 - 11.00" />
+												<f:selectItem itemLabel="11.00 - 12.00"
+													itemValue="11.00 - 12.00" />
+												<f:selectItem itemLabel="12.00 - 13.00"
+													itemValue="12.00 - 13.00" />
+												<f:selectItem itemLabel="13.00 - 14.00"
+													itemValue="13.00 - 14.00" />
+												<f:selectItem itemLabel="14.00 - 15.00"
+													itemValue="14.00 - 15.00" />
+												<f:selectItem itemLabel="15.00 - 16.00"
+													itemValue="15.00 - 16.00" />
+												<f:selectItem itemLabel="16.00 - 17.00"
+													itemValue="16.00 - 17.00" />
+												<f:selectItem itemLabel="17.00 - 18.00"
+													itemValue="17.00 - 18.00" />
+												<f:selectItem itemLabel="18.00 - 19.00"
+													itemValue="18.00 - 19.00" />
+												<f:selectItem itemLabel="19.00 - 20.00"
+													itemValue="19.00 - 20.00" />
+												<f:selectItem itemLabel="20.00 - 21.00"
+													itemValue="20.00 - 21.00" />
+												<f:selectItem itemLabel="21.00 - 22.00"
+													itemValue="21.00 - 22.00" />
+
+											</p:selectOneMenu>
+										</div>
+										<div align="center" class="form-group">
+											<p:commandButton value="จอง" ajax="false"
+												actionListener="#{sessionMBean.validateBooking1}"
+												class="btn btn-success" update="panel_edit_detail" icon="ui-icon-check" />
+											<!-- 											<p:commandButton value="ยกเลิก" type="reset" -->
+											<!-- 												styleClass="ui-confirmdialog-no" class="btn btn-warning" -->
+											<!-- 												icon="ui-icon-close" /> -->
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<p:growl id="msgs" showDetail="true" />
+					</p:outputPanel>
+				</h:form>
+			</section>
+		</section>
+	</ui:define>
+</ui:composition>

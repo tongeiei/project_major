@@ -1,0 +1,114 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | ชำระค่าบริการ
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<br />
+			<section class="content">
+				<ui:debug />
+				<h:form id="form">
+					<p:outputPanel id="panel_edit">
+						<div class="box box-solid box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<i class="fa fa-pencil-square-o" /> Major | จัดการข้อมูลลูกค้า
+								</h3>
+								<div class="box-tools pull-right">
+									<i class="fa fa-minus"></i>
+								</div>
+							</div>
+							<div class="box-body">
+								<div class="form-group">
+									<div class="panel panel-success">
+										<div class="panel-heading">
+											<h3 class="panel-title">:: วิธีการชำระค่าบริการ ::</h3>
+										</div>
+										<div class="panel-body">
+											<div class="form-group col-md-10">1.
+												ทำการจองสนามฟุตบอลให้เรียบร้อย</div>
+
+											<div class="form-group col-md-10">2.
+												เลือกวิธีการจ่ายเงิน เช่น จ่ายด้วยแต้มสะสม
+												หรือจ่ายด้วยการโอนเงิน</div>
+
+											<div class="form-group col-md-10">
+												<div class="form-group col-md-10">2.1)
+													ถ้าเลือกจ่ายด้วยแต้มสะสม สมาชิกต้องมีแต้มสะสม 10 แต้มขึ้นไป
+													แล้วจะจองได้ 1 ชั่วโมงเท่านั้น
+													แล้วระบบจะทำการรีเซ็ตแต้มสะสมเป็น 0 เมื่อทำสำเร็จ</div>
+												<div class="form-group col-md-10">
+													<span style="color: red;">*วิธีใช้แต้มสะสม</span> ไปที่เมนู
+													การชำระค่าบริการ <i class="fa fa-arrow-right">
+														เลือกเมนู ชำระด้วยแต้มสะสม</i> <i class="fa fa-arrow-right">
+														เลือก จ่ายด้วยแต้ม</i>
+												</div>
+												<div class="form-group col-md-10">2.2)
+													ถ้าเลือกการจ่ายด้วยการโอนเงิน
+													ให้สมาชิกทำการเงินโอนมายังเลขบัญชี xxxxxxxxxxxx ภายใน 30
+													นาที หลังจากบันทึกการจองสำเร็จ</div>
+												<div class="form-group col-md-10">
+													<span style="color: red;">*วิธีใช้แต้มสะสม</span> ไปที่เมนู
+													การชำระค่าบริการ <i class="fa fa-arrow-right">
+														เลือกเมนู ชำระด้วยการโอนเงิน</i> <i class="fa fa-arrow-right">
+														คลิก เลือกรูปภาพ </i><i class="fa fa-arrow-right"> คลิก
+														ส่งข้อมูล </i>
+												</div>
+
+											</div>
+
+											<div class="form-group col-md-10">3.
+												หลังจากที่ทำการจ่ายสำเร็จลูกค้าจะได้รับอีเมล์ตอบกลับ</div>
+
+
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</p:outputPanel>
+				</h:form>
+			</section>
+		</section>
+	</ui:define>
+</ui:composition>

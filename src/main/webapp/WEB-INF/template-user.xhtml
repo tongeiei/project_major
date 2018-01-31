@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+	<f:facet name="first">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="description"
+			content="A front-end template that helps you build fast, modern mobile web apps." />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+		<title><ui:insert name="title">Project-Major-Web</ui:insert></title>
+
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes" />
+		<link rel="icon" sizes="192x192" href="images/android-desktop.png" />
+
+		<!-- Add to homescreen for Safari on iOS -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-title" content="Material Design Lite" />
+		<link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png" />
+
+		<!-- Tile icon for Win8 (144x144 + tile color) -->
+		<meta name="msapplication-TileImage"
+			content="images/touch/ms-touch-icon-144x144-precomposed.png" />
+		<meta name="msapplication-TileColor" content="#3372DF" />
+		<link rel="shortcut icon" type="image/png"
+			href="#{request.contextPath}/resources/images/logoMA.png" />
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.min.css" />
+		<h:outputStylesheet name="css/AdminLTE.min.css" />
+		<h:outputStylesheet name="css/font-awesome.min.css" />
+		<h:outputStylesheet name="css/ionicons.min.css" />
+		<h:outputStylesheet name="css/skins/_all-skins.min.css" />
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+		<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
+		<h:outputScript name="bootstrap/js/bootstrap.min.js" />
+		<h:outputScript name="js/plugins/slimScroll/jquery.slimscroll.min.js" />
+		<h:outputScript name="js/plugins/fastclick/fastclick.min.js" />
+		<h:outputStylesheet name="css/perfect-scrollbar.css" />
+		<h:outputScript name="js/perfect-scrollbar.js" />
+		<h:outputScript name="js/app.min.js" />
+		<h:outputScript name="js/plugins/switchery/switchery.js" />
+		<h:outputScript name="js/custom.min.js" />
+	</f:facet>
+	<ui:insert name="head" />
+</h:head>
+
+<h:body class="skin-green sidebar-mini">
+	<f:facet name="last">
+		<h:outputStylesheet library="css" name="my-style.css" />
+	</f:facet>
+	<div class="wrapper">
+		<header class="main-header">
+<!-- 		<div class="pull-left image"> -->
+<!-- 						<p:graphicImage name="images/avatar2.png" alt="User Image" -->
+<!-- 							styleClass="img-circle" /> -->
+<!-- 					</div> -->
+			<a href="home.jsf" class="logo"> <span class="logo-mini">
+					Major </span> <span class="logo-lg"> <b style="font-size: 10pt">Major-Web</b>
+					<!-- 					<img alt="" src="resources/images/50logo.png" /> -->
+			</span>
+			</a>
+			<nav class="navbar navbar-static-top" role="navigation">
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+					role="button"> <span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+				</a>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown user user-menu"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown"> <!-- 							<p:graphicImage -->
+								<!-- 									name="images/avatar2.png" alt="User Image" --> <!-- 									styleClass="user-image" />  -->
+								<span class="hidden-xs"> <!-- 									<p:outputLabel value="username" /> -->
+									<p:outputLabel value="#{sessionMBean.loginName}" />
+							</span>
+						</a> 				
+					</li></ul>
+					
+				</div>
+			</nav>
+		</header>
+
+		<aside class="main-sidebar">
+			<section class="sidebar">
+				<ul class="sidebar-menu">
+					<li class="header">NAVIGATION MENU</li>
+					<li><a href="home.jsf"> <i class="fa fa-home">
+								หน้าหลัก </i>
+					</a></li>
+<!-- 					<li><a href="login.jsf"> <i class="fa fa-home"> -->
+<!-- 								เข้าสู่ระบบ </i> -->
+<!-- 					</a></li> -->
+					<li><a href="register.jsf"> <i class="fa fa-user-plus">
+								สมัครสมาชิก</i>
+					</a></li>
+
+
+				</ul>
+			</section>
+		</aside>
+		<div class="content-wrapper">
+			<ui:insert name="body" />
+		</div>
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Web Version</b> 1.1.0
+			</div>
+			<strong> Copyright 2017 <i class="fa fa-copyright"></i> <a
+				href="#">Information Technology</a>
+			</strong> All rights reserved.
+		</footer>
+		<aside class="control-sidebar control-sidebar-dark">
+			<div class="note-sidebar">
+				<h3>SideBar</h3>
+			</div>
+			<div class="note-sidebar">Item Side Bar</div>
+		</aside>
+		<div class="control-sidebar-bg"></div>
+		<p:ajaxStatus>
+			<f:facet name="start">
+				<div class="popup-panel-refresh">
+					<div class="overlay" style="opacity: 2;">
+						<i class="fa fa-spinner fa-spin icon-refresh"></i>
+					</div>
+				</div>
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+
+<!-- 		<script type="text/javascript"> -->
+// 		jsf.ajax.addOnError(function(data) {
+//  				window.location = "home.jsp";
+// 		});
+<!-- 	</script> -->
+	</div>
+</h:body>
+</html>

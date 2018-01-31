@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major Arena
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<section>
+				<h1>Major Arena</h1>
+			</section>
+			<br />
+			<section class="content">
+				<h:form id="booking">
+					<p:growl id="msgs" showDetail="true" />
+
+					<div style="text-align: center">
+						<!-- 						<p:outputLabel for="button" value="เลือกวันที่   :  " /> -->
+						<p:calendar id="button" placeholder="เลือกวันที่" value="#{calendarView.date3}"
+							showOn="button" />
+					</div>
+
+
+					<p:dialog modal="true" resizable="false" header="Values"
+						widgetVar="dlg" showEffect="fold">
+						<p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+
+							<h:outputText value="Button:" />
+							<h:outputText value="#{calendarView.date3}">
+								<f:convertDateTime pattern="MM/dd/yyyy" />
+							</h:outputText>
+						</p:panelGrid>
+					</p:dialog>
+					<div>
+						<p:dataTable>
+						
+							<div>
+								<p:column headerText="เวลาจอง">
+									<h:outputText value="08.00" />
+
+								</p:column>
+							</div>
+
+							<div>
+								<p:column headerText="สนามเล็ก">
+									<h:outputText value="" />
+								</p:column>
+							</div>
+							<div>
+								<p:column headerText="สนามใหญ่">
+									<h:outputText value="" />
+								</p:column>
+							</div>
+							<!-- 						<p:column headerText="การจอง" style="text-align: center"> -->
+
+							<!-- 						</p:column> -->
+						</p:dataTable>
+					</div>
+
+				</h:form>
+			</section>
+		</section>
+	</ui:define>
+</ui:composition>

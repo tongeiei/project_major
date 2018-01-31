@@ -1,0 +1,162 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | จัดการข้อมูลสนาม
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<br />
+			<ui:debug />
+			<h:form id="form">
+				<p:outputPanel id="panel_edit">
+					<div class="box box-solid box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">
+								<i class="fa fa-pencil-square-o" /> Major | จัดการข้อมูลสนาม
+							</h3>
+							<div class="box-tools pull-right">
+							<p:commandButton class="btn  btn-danger btn-sm"  onclick="PF('dlg').show();" value="เพิ่มข้อมูล"/>
+								<i class="fa fa-minus"></i>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12">
+									<p:dataTable id="dataTable" var="s" value="#{showField.lsfield}"
+										editable="true" reflow="true">
+										<p:ajax event="rowEdit" listener="#{showField.editField}"
+											update=":form:msgs" />
+										<p:ajax event="rowEditCancel"
+											listener="#{showField.cancelBtn}" update=":form:msgs" />
+<!-- 										<f:facet name="header"> -->
+<!-- 											<p:outputLabel value="แสดงข้อมูล" /> -->
+<!-- 										</f:facet> -->
+										<p:column headerText="">
+											<f:facet name="header">
+												<h:outputText value="#{s.field_id}" />
+											</f:facet>
+											<h:outputText value="#{s.field_id}" />
+										</p:column>
+
+										
+
+										<p:column headerText="ชื่อสนาม">
+											<p:cellEditor>
+												<f:facet name="output">
+													<h:outputText value="#{s.field_name}" />
+												</f:facet>
+												<f:facet name="input">
+													<p:inputText value="#{s.field_name}" />
+												</f:facet>
+											</p:cellEditor>
+										</p:column>
+
+										<p:column headerText="รายละเอียดสนาม">
+											<p:cellEditor>
+												<f:facet name="output">
+													<h:outputText value="#{s.field_detail}" />
+												</f:facet>
+												<f:facet name="input">
+													<p:inputTextarea value="#{s.field_detail}" />
+												</f:facet>
+											</p:cellEditor>
+										</p:column>
+
+										<p:column headerText="ราคา">
+											<p:cellEditor>
+												<f:facet name="output">
+													<h:outputText value="#{s.field_price}" />
+												</f:facet>
+												<f:facet name="input">
+													<p:inputText value="#{s.field_price}" />
+												</f:facet>
+											</p:cellEditor>
+										</p:column>
+										<p:column headerText=""  style="text-align: center;">
+											<f:facet name="header">
+													
+											</f:facet>
+											<p:rowEditor />
+										</p:column>
+									</p:dataTable>
+									<p:dialog class="panel-title" header=":: เพิ่มข้อมูลสนาม ::"
+										widgetVar="dlg" focus="field_name" resizable="false">
+
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel for="field_name" value="ชื่อสนาม : ">
+												<span style="color: red;">*</span>
+											</h:outputLabel>
+											<p:inputText class="form-control" id="field_name" value="#{showField.fieldB.field_name}"  />
+
+											<h:outputLabel>รายละเอียดสนาม : <span
+													style="color: red;">*</span>
+											</h:outputLabel>
+											<p:inputTextarea class="form-control" id="field_detail" value="#{showField.fieldB.field_detail}" />
+
+											<h:outputLabel>ราคา/ชั่วโมงล่ะ : <span
+													style="color: red;">*</span>
+											</h:outputLabel>
+											<p:inputText id="field_price" value="#{showField.fieldB.field_price}" />
+											
+											<f:facet name="footer">
+
+												<div align="center"><p:commandButton  value="บันทึกข้อมูล"
+													actionListener="#{showField.addField}"
+													styleClass="ui-confirmdialog-yes" ajax="false"
+													class="btn   btn-sm" icon="ui-icon-check"
+													update="matchGrid" />
+												<p:commandButton value="ล้างข้อมูล" type="reset"
+													styleClass="ui-confirmdialog-no" class="btn   btn-sm"
+													icon="ui-icon-close" /></div>
+
+											
+											</f:facet>
+										</h:panelGrid>
+									</p:dialog>
+									<p:growl id="msgs" showDetail="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

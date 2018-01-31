@@ -1,0 +1,206 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | Register
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		
+		</f:facet>
+		<section>
+			<h1>Major | สมัครสมาชิก</h1>
+		</section>
+
+		<section class="content">
+			<h:form id="frm_register" enctype="multipart/form-data">
+				<p:messages showDetail="true" />
+				<div class="form-group">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title">:: ข้อมูลเข้าสู่ระบบ ::</h3>
+						</div>
+
+						<div class="panel-body">
+							<p:messages id="msg_confirm" for="confirm" showDetail="true"
+								autoUpdate="true" closable="true" />
+							<p:messages id="msg_check" for="check" showDetail="true"
+								autoUpdate="true" closable="true" />
+
+
+							<div class="form-group col-md-12">
+
+								<label class="col-md-4 control-label">ชื่อผู้เข้าใช้ระบบ
+									: <span style="color: red;">*</span>
+								</label>
+								<div class="col-md-8">
+									<p:inputText class="form-control" id="username"
+										value="#{register.user_bean.user_name}" />
+								</div>
+
+							</div>
+
+							<div class="form-group col-md-12">
+								<p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+								<h:panelGrid columns="100" id="matchGrid" cellpadding="150">
+									<label>รหัสผ่านผู้เข้าใช้ : <span style="color: red;">*</span>
+									</label>
+									<div class="col-md-8">
+									<p:password id="pwd1" value="#{register.user_bean.user_pass}"
+										match="pwd2" label="Password 1" required="true" /></div>
+									<label>ยืนยันรหัสผ่าน : <span style="color: red;">*</span>
+									</label>
+									<div class="col-md-8"><p:password id="pwd2" value="#{register.user_bean.user_pass}"
+										label="Password 2" required="true" /></div>
+								</h:panelGrid>
+								<!-- 								<div class="col-md-8"> -->
+								<!-- 									<p:inputText class="form-control" id="password" type="password" -->
+								<!-- 										value="#{register.user_bean.user_pass}" /> -->
+								<!-- 								</div> -->
+
+							</div>
+						</div>
+						<div class="panel panel-success">
+							<div class="panel panel-heading">
+								<h3 class="panel-title">:: Register ::</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<div class=" form-group col-md-12">
+
+										<label class="col-md-4 control-label">ชื่อ : <span
+											style="color: red;">*</span></label>
+										<div class="col-md-8">
+											<p:inputText class="form-control" placeholder="กรุณากรอกชื่อ"
+												id="name" value="#{register.user_bean.name}" />
+										</div>
+
+
+									</div>
+								</div>
+
+								<div class=" form-group col-md-12">
+
+
+									<label class="col-md-4 control-label">นามสกุล : <span
+										style="color: red;">*</span></label>
+									<div class="col-md-8">
+										<p:inputText class="form-control"
+											placeholder="กรุณากรอกนามสกุล" id="lastname"
+											value="#{register.user_bean.lastname}" />
+									</div>
+
+								</div>
+
+								<div class=" form-group col-md-12">
+
+									<label class="col-md-4 control-label">รูปประจำตัว : <span
+										style="color: red;">*</span></label>
+
+									<div class="col-md-8">
+
+										<p:fileUpload value="#{register.user_bean.pic}" mode="simple" />
+										<!-- 										<p:commandButton value="Submit" ajax="false" actionListener="#{user.addUser()}" /> -->
+										<h:graphicImage id="PIC" url="/image" />
+									</div>
+
+								</div>
+
+								<div class=" form-group col-md-12">
+
+									<label class="col-md-4 control-label">E-Mail : <span
+										style="color: red;">*</span></label>
+									<div class="col-md-8">
+										<p:inputText id="email" required="true"
+											requiredMessage="Please enter your email address."
+											validatorMessage="Invalid email format"
+											value="#{register.user_bean.email}">
+
+											<f:validateRegex
+												pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+										</p:inputText>
+
+										<p:message for="email" />
+									</div>
+								</div>
+
+								<div class=" form-group col-md-12">
+
+									<label class="col-md-4 control-label">ที่อยุ่ : <span
+										style="color: red;"></span></label>
+									<div class="col-md-8">
+										<p:inputTextarea rows="6" cols="33" id="address"
+											value="#{register.user_bean.address}" class="form-control"
+											placeholder="กรุณากรอกที่อยู่" />
+									</div>
+								</div>
+
+								<div class=" form-group col-md-12">
+
+									<label class="col-md-4 control-label">เบอร์โทรศัพท์ : <span
+										style="color: red;">*</span></label>
+									<div class="col-md-8">
+										<p:inputText id="phone" value="#{register.user_bean.phone}"
+											placeholder="กรุณากรอกเบอร์โทรศัพท์" class="form-control" />
+									</div>
+								</div>
+								<div align="center" class="box-footer clearfix">
+									<div class="row">
+
+
+										<p:commandButton value="บันทึก"
+											actionListener="#{register.onBtnSubmit()}"
+											styleClass="ui-confirmdialog-yes" ajax="false"
+											class="btn btn-success" icon="ui-icon-check"
+											update="matchGrid" />
+										<p:commandButton value="ยกเลิก" type="reset"
+											styleClass="ui-confirmdialog-no" class="btn btn-warning"
+											icon="ui-icon-close" />
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

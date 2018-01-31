@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">
+        Major Arena
+    </ui:define>
+	<ui:define name="body"> 
+		<f:facet name="last"> 
+		
+		</f:facet> 
+		<section class="content-header">
+<!-- 			<h1> -->
+<!-- 				Home<small>Major Arena</small> -->
+<!-- 			</h1> -->
+<!-- 			<ol class="breadcrumb"> -->
+<!-- 				<li><a href="home.xhtml"><i class="fa fa-home"></i>Home</a></li> -->
+<!-- 				<li class="active">Welcome</li> -->
+<!-- 			</ol> -->
+		</section>
+		<section class="content">
+			<h:form id="frm_index_major">
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">ยินดีต้อนรับ</h3>
+						<div class="box-tools pull-right">
+							<i class="fa fa-minus"></i>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							 <div> 
+								<p:outputLabel value="คุณ  #{sessionMBean.loginName}" />
+							</div>
+						</div>
+					</div>
+				</div> 
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

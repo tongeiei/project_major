@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major Arena
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<section>
+				<h1>Major Arena</h1>
+			</section>
+			<br />
+			<section class="content">
+				<h:form id="booking">
+					<p:outputPanel id="form">
+						<div class="box box-solid box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<i class="fa fa-money" /> จอง
+								</h3>
+								<div class="box-tools pull-right">
+									<i class="fa fa-minus"></i>
+								</div>
+							</div>
+							<p:growl id="msgs" showDetail="true" />
+
+							<div style="text-align: center">
+								<!-- 						<p:outputLabel for="button" value="เลือกวันที่   :  " /> -->
+								<p:calendar id="button" placeholder="เลือกวันที่"
+									showOn="button" />
+							</div>
+
+
+							<p:dialog modal="true" resizable="false" header="Values"
+								widgetVar="dlg" showEffect="fold">
+								<p:panelGrid id="display" columns="2"
+									columnClasses="label,value">
+
+
+									<h:outputText value="Button:" />
+									<h:outputText value="#{calendarView.date3}">
+										<f:convertDateTime pattern="MM/dd/yyyy" />
+									</h:outputText>
+								</p:panelGrid>
+							</p:dialog>
+							<div>
+								<p:dataTable value="#{bookingDetailMBean.listTime}" var="list"
+									paginator="true" rows="10" reflow="true">
+									<p:outputPanel>
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputText value="Id:" />
+											<h:outputText value="#{car.id}" style="font-weight: bold" />
+
+											<h:outputText value="Year:" />
+											<h:outputText value="#{car.year}" style="font-weight: bold" />
+
+											<h:outputText value="Color:" />
+											<h:outputText value="#{car.color}" style="font-weight: bold" />
+										</h:panelGrid>
+									</p:outputPanel>
+									<p:column headerText="ช่วงเวลา">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="08.00 - 09.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="09.00 - 10.00" style="text-align:center;">
+										<p:commandButton icon="fa fa-check" title="จอง"
+											action="#{bookingDetailMBean.chooseConditionOne}"
+											update=":booking">
+											<f:setPropertyActionListener
+												target="#{bookingDetailMBean.selectTime}" value="#{list}" />
+										</p:commandButton>
+									</p:column>
+									<p:column headerText="10.00 - 11.00" style="text-align:center;">
+										<p:commandButton icon="fa fa-check" title="จอง"
+											action="#{bookingDetailMBean.chooseConditionTwo}"
+											update=":booking">
+											<f:setPropertyActionListener
+												target="#{bookingDetailMBean.selectTime}" value="#{list}" />
+										</p:commandButton>
+									</p:column>
+									<p:column headerText="11.00 - 12.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="12.00 - 13.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="14.00 - 15.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="15.00 - 16.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="16.00 - 17.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="17.00 - 18.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="18.00 - 19.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="19.00 - 20.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="20.00 - 21.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="21.00 - 22.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+									<p:column headerText="22.00 - 23.00">
+										<h:outputText value="#{list.time}" />
+									</p:column>
+								</p:dataTable>
+							</div>
+						</div>
+					</p:outputPanel>
+				</h:form>
+			</section>
+		</section>
+	</ui:define>
+</ui:composition>

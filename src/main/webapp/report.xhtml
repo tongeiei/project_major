@@ -1,0 +1,139 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major Arena | รายงาน
+    </ui:define>
+	<ui:define name="head">
+		<meta charset="UTF-8" />
+		<!-- 		<meta encoding="UTF-8"/> -->
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<br />
+			<ui:debug />
+			<h:form id="form">
+				<p:outputPanel id="panel_edit">
+					<div class="box box-solid box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">
+								<i class="fa fa-pencil-square-o" /> Major | รายงาน
+							</h3>
+							<div class="box-tools pull-right">
+								<i class="fa fa-minus"></i>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="row">
+
+								<div class="col-sm-12 col-xs-12">
+									<div align="right">
+										<h:commandButton image="/resources/images/pdf-1.png"
+											style="width: 30px; height: 30px;">
+											<p:dataExporter type="pdf" target="tbl"
+												fileName="Major-Report" encoding="UTF-8" />
+										</h:commandButton>
+
+										<h:commandButton image="/resources/images/exc-1.png"
+											style="width: 30px; height: 30px;">
+											<p:dataExporter type="xls" target="tbl"
+												fileName="Major-Report" encoding="UTF-8" />
+										</h:commandButton>
+									</div>
+									<p:dataTable reflow="true" id="tbl" var="s"
+										value="#{showField.lsBooking_byA}"
+										paginatorTemplate="{CurrentPageReport}   {PageLinks} "
+										paginator="true">
+<!-- 										<f:facet name="header"> -->
+
+<!-- 											<p:outputLabel value="แสดงข้อมูล" style="font-size:25px" /> -->
+<!-- 											<div> -->
+<!-- 												<p:outputLabel value="ค้นหา : " /> -->
+<!-- 												<p:inputText></p:inputText> -->
+<!-- 											</div> -->
+<!-- 										</f:facet> -->
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="Username" />
+											</f:facet>
+											<h:outputText value="#{s.user_name}" />
+										</p:column>
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="Date" />
+											</f:facet>
+											<h:outputText value="#{s.test_date}" />
+										</p:column>
+
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="Time" />
+											</f:facet>
+											<h:outputText value="#{s.detail_booking}" />
+										</p:column>
+
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="Tel. - Email" />
+											</f:facet>
+											<h:outputText value="#{s.tel}" /><br/>
+											<h:outputText value="#{s.email}" />
+										</p:column>
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="Status" />
+											</f:facet>
+											<h:outputText value="#{s.status_booking}" />
+										</p:column>
+
+
+
+									</p:dataTable>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

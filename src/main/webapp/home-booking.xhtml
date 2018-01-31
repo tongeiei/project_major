@@ -1,0 +1,121 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | จองสนาม
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<br />
+			<ui:debug />
+			<h:form id="form">
+				<p:outputPanel id="panel_edit">
+					<div class="box box-solid box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">
+								<i class="fa fa-pencil-square-o" /> Major | จองสนามฟุตบอล
+							</h3>
+							<div class="box-tools pull-right">
+								<i class="fa fa-minus"></i>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12">
+
+									<div align="center">
+										<p:outputPanel>
+
+											<img src="resources/images/01.jpg"
+												style="width: 70%; height: 70%;" />
+											<h:panelGrid columns="2" cellpadding="10"
+												value="#{showField.list()}" var="s" style="font-size:120%">
+
+												<h:outputText value="ชื่อสนาม : " />
+												<h:outputText value="สนามเล็ก" style="font-weight: bold" />
+
+												<h:outputText value="รายละเอียดของสนาม : " />
+												<h:outputText
+													value="สนามเล็ก ขนาดสนาม 43 เมตร x 33 เมตร ชั่วโมงล่ะ 600 บาท จำนวนผู้ที่เล่นได้ทีมล่ะ 5 - 6 คน มีลูกฟุตบอล"
+													style="font-weight: bold" />
+
+												<h:outputText value="ชั่วโมงล่ะ : " />
+												<h:outputText value="600฿" style="font-weight: bold" />
+											</h:panelGrid>
+											<h3>
+												<p:commandButton class="btn  btn-danger "
+													icon="fa fa-soccer-ball-o" action="01.jsf" value="จอง" />
+											</h3>
+										</p:outputPanel>
+									</div>
+									<br />
+									<div align="center">
+										<p:outputPanel>
+											<img src="resources/images/02.jpg"
+												style="width: 70%; height: 70%;" />
+											<h:panelGrid columns="2" cellpadding="5"
+												value="#{showField.list()}" var="s" style="font-size:120%">
+												<h:outputText value="ชื่อสนาม : " />
+												<h:outputText value="สนามใหญ่" style="font-weight: bold" />
+
+												<h:outputText value="รายละเอียดของสนาม : " />
+												<h:outputText
+													value="สนามใหญ่ ขนาดสนาม 53 เมตร x 33 เมตร ชั่วโมงล่ะ 1000 บาท จำนวนผู้ที่เล่นได้ทีมล่ะ 7 - 8 คน มีลูกฟุตบอล"
+													style="font-weight: bold" />
+
+												<h:outputText value="ชั่วโมงล่ะ : " />
+												<h:outputText value="1000฿" style="font-weight: bold" />
+
+											</h:panelGrid>
+											<h3>
+												<p:commandButton class="btn  btn-danger "
+													icon="fa fa-soccer-ball-o" action="02.jsf" value="จอง" />
+											</h3>
+										</p:outputPanel>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>

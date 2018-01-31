@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">
+        Major | ประวัติการจอง
+    </ui:define>
+	<ui:define name="head">
+		<style type="text/css">
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 18px;
+	padding: 0 0px;
+	padding-top: 4px;
+}
+
+.ui-selectonemenu {
+	padding-right: 1em;
+}
+
+.ui-messages-info, .ui-messages-warn, .ui-messages-error,
+	.ui-messages-fatal {
+	margin: 0px 0;
+	padding: 6px 10px 6px 10px;
+}
+
+.font-95 .ui-widget {
+	font-size: 95%;
+}
+
+.font-90 .ui-widget {
+	font-size: 90%;
+}
+
+.box-header.with-border-twin {
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+</style>
+	</ui:define>
+	<ui:define name="body">
+		<f:facet name="last">
+		</f:facet>
+		<section class="content">
+			<br />
+			<ui:debug />
+			<h:form id="form">
+				<p:outputPanel id="panel_edit">
+					<div class="box box-solid box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">
+								<i class="fa fa-pencil-square-o" /> Major | ประวัติการจอง
+							</h3>
+							<div class="box-tools pull-right">
+								<i class="fa fa-minus"></i>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12 col-xs-12">
+									<p:dataTable id="dataTable" var="s"
+										value="#{sessionMBean.lsbooking_byUsr}" editable="true" reflow="true">
+
+						
+
+
+										<f:facet name="header">
+											<p:outputLabel value="แสดงข้อมูลการจอง" />
+										</f:facet>
+
+										<p:column headerText="ลำดับที่">
+											<f:facet name="output">
+												<h:outputText value="#{s.id_booking}" />
+											</f:facet>
+											<h:outputText value="#{s.id_booking}" id="id_booking" />
+										</p:column>
+
+										<p:column headerText="ชื่อผู้ใช้">
+
+										
+												<h:outputText value="#{s.user_name}" />
+											
+
+										</p:column>
+
+										<p:column headerText="วันที่จอง">
+
+												<h:outputText value="#{s.test_date}" />
+										
+
+										</p:column>
+
+										<p:column headerText="ช่วงเวลาจอง">
+
+										
+												<h:outputText value="#{s.detail_booking}" />
+											
+
+										</p:column>
+
+										<p:column headerText="สนาม">
+
+											
+												<h:outputText value="#{s.field_name}" />
+										
+										</p:column>
+
+										<p:column headerText="Email">
+
+										
+												<h:outputText value="#{s.email}" />
+											
+
+										</p:column>
+										<p:column headerText="เบอร์โทร">
+
+											
+												<h:outputText value="#{s.tel}" />
+										
+
+										</p:column>
+										<p:column headerText="สถานะ">
+
+											
+												<h:outputText value="#{s.status_booking}" />
+											
+
+										</p:column>
+
+										
+
+										
+
+
+									</p:dataTable>
+									<p:growl id="msgs" showDetail="true" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</h:form>
+		</section>
+	</ui:define>
+</ui:composition>
